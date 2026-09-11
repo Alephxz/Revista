@@ -18,6 +18,7 @@
         #revista-container {
             margin: 20px auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            touch-action: pan-y pinch-zoom;
         }
         .pagina {
             background-color: white;
@@ -100,7 +101,9 @@
                 showCover: true,
                 flippingTime: 800,
                 usePortrait: true,
-                drawShadow: true
+                drawShadow: true,
+                mobileScrollSupport: true,
+                swipeDistance: 80
             });
 
             pageFlip.loadFromHTML(paginas);
