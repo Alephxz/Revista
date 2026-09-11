@@ -114,20 +114,20 @@
             window.addEventListener('touchstart', function(event) {
                 if (event.touches.length > 1 || Date.now() < pageFlipCooldownUntil) {
                     pinchGesture = true;
-                    event.stopPropagation();
+                    event.stopImmediatePropagation();
                 }
             }, true);
 
             window.addEventListener('touchmove', function(event) {
                 if (pinchGesture || event.touches.length > 1) {
                     pinchGesture = true;
-                    event.stopPropagation();
+                    event.stopImmediatePropagation();
                 }
             }, true);
 
             window.addEventListener('touchend', function(event) {
                 if (pinchGesture) {
-                    event.stopPropagation();
+                    event.stopImmediatePropagation();
                     if (event.touches.length === 0) {
                         pinchGesture = false;
                         pageFlipCooldownUntil = Date.now() + 500;
