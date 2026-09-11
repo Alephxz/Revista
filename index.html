@@ -107,6 +107,33 @@
             });
 
             pageFlip.loadFromHTML(paginas);
+
+            let pinchGesture = false;
+            let pageFlipCooldownUntil = 0;
+
+            window.addEventListener('touchstart', function(event) {
+                if (event.touches.length > 1 || Date.now() < pageFlipCooldownUntil) {
+                    pinchGesture = true;
+                    event.stopPropagation();
+                }
+            }, true);
+
+            window.addEventListener('touchmove', function(event) {
+                if (pinchGesture || event.touches.length > 1) {
+                    pinchGesture = true;
+                    event.stopPropagation();
+                }
+            }, true);
+
+            window.addEventListener('touchend', function(event) {
+                if (pinchGesture) {
+                    event.stopPropagation();
+                    if (event.touches.length === 0) {
+                        pinchGesture = false;
+                        pageFlipCooldownUntil = Date.now() + 500;
+                    }
+                }
+            }, true);
         });
     </script>
 
