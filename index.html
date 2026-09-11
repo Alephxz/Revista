@@ -1,0 +1,14 @@
+<div id="contador-visitas">
+  Visitas totales: <span id="numero-visitas">...</span>
+</div>
+
+<script>
+  const API_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSXRYLcmMbUAZv8LYXQNAT4qYQwR7AOUlK5nXak5tFyZ_To4SP66JHdHHeaY9uhFu4lp-2BvqXHfxg6zSm-4Qo6aWYgqM8Pp9mnh-k86kvCMJM5EMal1uusZGvj0wuNsTmASAo2xoNnx3x-Q_4L9aMNfULzibQg4V8vyACMhjiack0_jW0h3KAe0iOvviAwiXfqzz4a7ZkgYcVMAvyL4klBgcvSPErr2pi_z6_A1eEleJNK8X-8kAiADaghuNvPYVL8HGkR6MNQztJ5vKaR1e6m6fRuKw&lib=M9NwxNbhpGSX4uC8lWT8VPgLA6SwWgZNe';
+
+  fetch(API_URL)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('numero-visitas').textContent = data.count;
+    })
+    .catch(error => console.error('Error al cargar contador:', error));
+</script>
