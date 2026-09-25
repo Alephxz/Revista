@@ -133,7 +133,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('revista-container');
-            const paginas = document.querySelectorAll('.pagina');
+            const paginas = Array.from(document.querySelectorAll('.pagina'));
+            const portada = paginas[0];
+            const contenido = paginas.slice(1);
 
             const pageFlip = new St.PageFlip(container, {
                 width: 400,
@@ -152,8 +154,21 @@
                 swipeDistance: 80
             });
 
-            pageFlip.loadFromHTML(paginas);
+            let contenidoCargado = false;
+
+            function cargarContenido() {
+                if (contenidoCargado) return;
+                contenidoCargado = true;
+                pageFlip.loadFromHTML(paginas);
+                pageFlip.flip(0);
+            }
+
+            pageFlip.loadFromHTML([portada]);
             pageFlip.flip(0);
+
+            container.addEventListener('pointerdown', cargarContenido, { once: true });
+            container.addEventListener('touchstart', cargarContenido, { once: true, passive: true });
+        });
 
             let pinchGesture = false;
             let pageFlipCooldownUntil = 0;
