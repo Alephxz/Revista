@@ -133,7 +133,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('revista-container');
-            const paginas = document.querySelectorAll('.pagina');
+            const paginas = Array.from(document.querySelectorAll('.pagina'));
+            const portada = paginas[0];
+
+            paginas.slice(1).forEach(pagina => pagina.remove());
 
             const pageFlip = new St.PageFlip(container, {
                 width: 400,
@@ -143,7 +146,8 @@
                 maxWidth: 600,
                 minHeight: 450,
                 maxHeight: 900,
-                showCover: false,
+                startPage: 0,
+                showCover: true,
                 flippingTime: 800,
                 usePortrait: true,
                 drawShadow: true,
@@ -151,7 +155,8 @@
                 swipeDistance: 80
             });
 
-            pageFlip.loadFromHTML(paginas);
+            pageFlip.loadFromHTML([portada]);
+            pageFlip.flip(0);
 
             let pinchGesture = false;
             let pageFlipCooldownUntil = 0;
