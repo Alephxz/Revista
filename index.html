@@ -31,9 +31,12 @@
             overflow: hidden;
             touch-action: pan-y pinch-zoom;
             background: #fff;
+            position: relative;
         }
         .pagina {
             background-color: white;
+            width: 100%;
+            height: 100%;
         }
         .pagina img {
             width: 100%;
@@ -145,9 +148,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('revista-container');
-            const paginas = Array.from(document.querySelectorAll('.pagina'));
-            const portada = paginas[0];
-            const contenido = paginas.slice(1);
+            const paginas = document.querySelectorAll('.pagina');
 
             const pageFlip = new St.PageFlip(container, {
                 width: 400,
@@ -166,21 +167,8 @@
                 swipeDistance: 80
             });
 
-            let contenidoCargado = false;
-
-            function cargarContenido() {
-                if (contenidoCargado) return;
-                contenidoCargado = true;
-                pageFlip.loadFromHTML(paginas);
-                pageFlip.flip(0);
-            }
-
-            pageFlip.loadFromHTML([portada]);
+            pageFlip.loadFromHTML(paginas);
             pageFlip.flip(0);
-
-            container.addEventListener('pointerdown', cargarContenido, { once: true });
-            container.addEventListener('touchstart', cargarContenido, { once: true, passive: true });
-        });
 
             let pinchGesture = false;
             let pageFlipCooldownUntil = 0;
