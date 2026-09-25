@@ -6,19 +6,31 @@
     <title>Revista Steam</title>
     <style>
         body {
-            background-color: #f0f0f0;
+            background: linear-gradient(180deg, #efefef 0%, #dfe3ea 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            font-family: sans-serif;
+            font-family: Arial, sans-serif;
+            color: #222;
+            padding: 24px 18px 40px;
+        }
+        h1 {
+            margin: 0 0 16px;
+            font-size: 2rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #2a2a2a;
         }
         #revista-container {
-            margin: 20px auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin: 0 auto;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
             touch-action: pan-y pinch-zoom;
+            background: #fff;
         }
         .pagina {
             background-color: white;
